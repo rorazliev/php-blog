@@ -1,0 +1,12 @@
+* text=auto
+
+*.md diff=markdown
+*.php diff=php
+*.html diff=html
+*.css diff=css
+
+*.jpeg binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.gif binary
