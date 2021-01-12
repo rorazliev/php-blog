@@ -14,7 +14,11 @@ spl_autoload_register(function ($class) {
     require_once $path;
   }
 });
-
+/**
+ * OR use composer:
+ *
+ * require_once __DIR__ . '/../vendor/autoload.php';
+ */
 use App\Routing\Router;
 
 $router = new Router;
