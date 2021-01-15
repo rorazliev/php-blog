@@ -131,7 +131,7 @@ class Response {
   public function onError(int $code): void {
     $this->setStatusCode($code);
     ob_start();
-    $content = require_once __DIR__ . "/../templates/errors/{$code}.php";
+    require_once __DIR__ . "/../templates/errors/{$code}.php";
     $this->setContent(ob_get_clean());
     $this->send();
   }
