@@ -16,6 +16,12 @@ class Request {
    */
   protected $uri;
   /**
+   * Built-in $_POST.
+   *
+   * @var array
+   */
+  protected $post;
+  /**
    * The matched parameters.
    *
    * @var array
@@ -33,6 +39,7 @@ class Request {
   public function __construct() {
     $this->method = $_SERVER['REQUEST_METHOD'];
     $this->uri = strtolower($_SERVER['REQUEST_URI']);
+    $this->post = $_POST;
     $this->parameters = [];
     $this->loggedIn = isset($_SESSION['admin']) ? true : false;
   }
@@ -51,6 +58,14 @@ class Request {
    */
   public function uri(): string {
     return $this->uri;
+  }
+  /**
+   * Get built-in $_POST.
+   *
+   * @return array
+   */
+  public function post(): array {
+    return $this->post;
   }
   /**
    * Get matched URI parameters.
