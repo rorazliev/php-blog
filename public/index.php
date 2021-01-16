@@ -22,3 +22,6 @@ spl_autoload_register(function ($class) {
 use App\Routing\Router;
 
 $router = new Router;
+$router->get('/contact', 'ContactController::render');
+$router->post('/contact', 'ContactController::sendEmail');
+$router->dispatch();
