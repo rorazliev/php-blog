@@ -53,7 +53,6 @@ class Contact {
    * @return void
    */
   public function send(array $post): void {
-    // mail($this->email, "{$post['name']} | {$post['email']}", $post['text']);
-    echo "sent";
+    mail($this->email, "{$post['name']} | {$post['email']}", $post['text']);
   }
 }

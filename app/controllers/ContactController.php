@@ -35,6 +35,7 @@ class ContactController {
 
     if ($model->isValid) {
       $model->send($request->post());
+      $response->json('success', 'The email has been sent');
     }
     else {
       $response->json('error', $model->message);
