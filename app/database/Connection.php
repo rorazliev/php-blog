@@ -66,9 +66,10 @@ class Connection {
    */
   protected function connect(array $config): void {
     extract($config);
-    $dsn = "mysql:host{$hostname};dbname={$database}";
+    $dsn = "mysql:host={$hostname};dbname={$database}";
     try {
       $this->connection = new PDO($dsn, $username, $password);
+      $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (Exception $e) {
       throw $e;
