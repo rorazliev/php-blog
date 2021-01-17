@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Http\Request;
 use App\Http\Response;
 use App\Models\Contact;
+use App\Validation\ContactValidator;
 use App\View\View;
 
 class ContactController {
@@ -30,15 +31,17 @@ class ContactController {
    * @return void
    */
   public function sendEmail(Request $request, Response $response): void {
+    $validator = new ContactValidator;
     $model = new Contact;
-    $model->validate($request->post());
 
-    if ($model->isValid) {
+    $validator->validate($request->post());
+
+    if ($validator->isValid()) {
       $model->send($request->post());
       $response->json('success', 'The email has been sent');
     }
     else {
-      $response->json('error', $model->message);
+      $response->json('error', $validator->message());
     }
   }
 }
