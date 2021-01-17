@@ -15,6 +15,16 @@ class Posts extends Model {
     return $this->connection->statement($query)->fetchColumn();
   }
   /**
+   * Check whether a post exists or not.
+   *
+   * @param int $postId
+   * @return bool
+   */
+  public function postExists(int $postId): bool {
+    $query = "SELECT id FROM posts WHERE id = :id";
+    return $this->connection->statement($query, ['id' => $postId])->fetchColumn();
+  }
+  /**
    * Get a certain post.
    *
    * @param int $postId
@@ -22,7 +32,8 @@ class Posts extends Model {
    */
   public function getPost(int $postId): array {
     $query = 'SELECT * FROM posts WHERE id = :id';
-    return $this->connection->select($query, ['id' => $postId]);
+    $records = $this->connection->select($query, ['id' => $postId]);
+    return array_shift($records);
   }
   /**
    * Get posts for a certain page.
@@ -37,5 +48,48 @@ class Posts extends Model {
       'limit' => 10
     ];
     return $this->connection->select($query, $bindings);
+  }
+  /**
+   *
+   *
+   *
+   */
+  public function addPost(array $post): int {
+    $query = 'INSERT INTO posts VALUES (:id, :title, :lead, :content)';
+    $bindings = [
+      'id' => '',
+      'title' => $post['title'],
+      'lead' => $post['lead'],
+      'content' => $post['content']
+    ];
+    $this->connection->statement($query, $bindings);
+    return $this->connection->lastInsertId();
+  }
+  /**
+   *
+   *
+   *
+   */
+  public function editPost(int $postId, array $post): void {
+    $query = 'UPDATE posts SET title = :title, lead = :lead, content = :content WHERE id = :id';
+    $bindings = [
+      'id' => $postId,
+      'title' => $post['title'],
+      'lead' => $post['lead'],
+      'content' => $post['content']
+    ];
+    $this->connection->statement($query, $bindings);
+  }
+  /**
+   *
+   *
+   *
+   */
+  public function deletePost(int $postId): void {
+    $query = 'DELETE FROM posts WHERE id = :id';
+    $bindings = [
+      'id' => $postId
+    ];
+    $this->connection->statement($query, $bindings);
   }
 }
