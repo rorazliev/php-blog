@@ -15,10 +15,10 @@
             <ul>
               <?php if(isset($_SESSION['admin'])): ?>
               <li>
-                <a class="post-edit" href="/edit/<?php echo $post['id']; ?>">Read</a>
+                <a class="post-edit" href="/edit/<?php echo $post['id']; ?>">Edit</a>
               </li>
               <li>
-                <a class="post-delete" href="/delete/<?php echo $post['id']; ?>">Read</a>
+                <a class="post-delete" href="/delete/<?php echo $post['id']; ?>">Delete</a>
               </li>
               <?php endif; ?>
               <li>
