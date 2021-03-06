@@ -19,6 +19,10 @@ spl_autoload_register(function ($class) {
  *
  * require_once __DIR__ . '/../vendor/autoload.php';
  */
+//use App\Migrations\PostMigration;
+//$migration = new PostMigration;
+//$migration->migrate();
+
 use App\Routing\Router;
 
 $router = new Router;

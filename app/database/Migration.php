@@ -29,7 +29,7 @@ abstract class Migration {
    * @param string $name
    * @return void
    */
-  public function createTable(string $name): void {
+  public function addTable(string $name): void {
     $query = "CREATE TABLE IF NOT EXISTS {$name} (id INT AUTO_INCREMENT PRIMARY KEY) ENGINE=InnoDB";
     $this->connection->statement($query);
     return;
