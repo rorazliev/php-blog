@@ -2,7 +2,7 @@
 
 namespace App\Validation;
 
-class AdminValidator {
+class AdminValidator extends Validator {
   /**
    * Validate credentials.
    *
