@@ -142,7 +142,7 @@ class Response {
    * @return void
    */
   public function redirect(string $uri): void {
-    header("Location: {$url}");
+    header("Location: /{$url}");
     exit;
   }
   /**
